@@ -1,0 +1,22 @@
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+// In this section you declare where to find the dependencies of your project
+repositories {
+  mavenCentral()
+  mavenLocal()
+}
+
+dependencies {
+    compile group: 'io.dropwizard', name: 'dropwizard-core', version: '1.0.0'
+
+    testCompile 'junit:junit:4.12'
+}
+
+task(run, dependsOn: "classes", type: JavaExec) {
+    main = "org.leggy.joinrobogals.JoinRobogalsServer"
+    classpath = sourceSets.main.runtimeClasspath
+    args 'server', './config.yaml'
+
+}

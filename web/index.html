@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Robogals UQ | Signup</title>
+    <link rel="stylesheet" href="style.css">
+
+    <script src="jquery-3.1.1.min.js"></script>
+    <script src="submit.js"></script>
+
+</head>
+<body>
+    <img src="logo.png" class="logo" alt="Robogals Logo">
+    <img id="welcome" src="welcome.png" class="logo" alt="Robogals Logo">
+    <form id="join-form" class="register">
+        <input type="text" id="firstName" name="firstName" class="register-input" placeholder="First name" autocomplete="off">
+        <p class="error" id="fnamep">Please enter your firstname.</p>
+
+        <input type="text" id="surname" name="surname" class="register-input" placeholder="Surname" autocomplete="off">
+        <p class="error" id="surnamep">Please enter your surname.</p>
+
+        <input type="text" id="email" name="email" class="register-input" placeholder="Email address" autocomplete="off">
+        <p class="error" id="emailp">Please enter your email address.</p>
+
+        <input type="text" id="studentNumber" name="studentNumber" class="register-input" placeholder="Student number" autocomplete="off">
+        <p class="error" id="studentnop">Please enter your student number (digits only).</p>
+
+        <input type="text" id="degree" name="degree" class="register-input" placeholder="Degree" autocomplete="off">
+        <p class="error" id="degreep">Please enter your degree.</p>
+
+        <input type="text" id="year" name="year" class="register-input" placeholder="Year level" autocomplete="off">
+        <p class="error" id="yearp">Please enter your year level.</p>
+
+        <div class="register-switch">
+            <input type="radio" name="gender" value="F" id="sex_f" class="register-switch-input" checked>
+            <label for="sex_f" class="register-switch-label">Female</label>
+            <input type="radio" name="gender" value="M" id="sex_m" class="register-switch-input">
+            <label for="sex_m" class="register-switch-label">Male</label>
+            <input type="radio" name="gender" value="O" id="sex_o" class="register-switch-input">
+            <label for="sex_o" class="register-switch-label">Other</label>
+        </div>
+
+        <input type="submit" value="Join Robogals!" class="register-button">
+    </form>
+    <script>
+        $('#join-form').submit(function(e){
+            e.preventDefault();
+            if(test()){
+                $.ajax({
+                    url:'http://localhost:8080/join',
+                    type:'post',
+                    data:$('#join-form').serialize(),
+                    success:function(){}
+                });
+                showWelcome();
+                clearForms();
+            }
+        });
+    </script>
+</body>
+</html>
